@@ -1,0 +1,97 @@
+{
+	"id": "cl1t9isoy0000d3scgw22g37w",
+	"name": "event bridge",
+	"description": "An empty project template",
+	"created": "2022-04-10T12:29:00.995Z",
+	"blueprints": [
+		{
+			"version": "2019-10-24",
+			"connections": {
+				"SendEvent01": {
+					"MyBus01": {
+						"type": "connection.resource-access",
+						"accessLevel": "write-only",
+						"from": "SendEvent01",
+						"to": "MyBus01"
+					}
+				},
+				"EventBridgeRule01": {
+					"MyBus01": {
+						"type": "connection.event-bridge.event-bus",
+						"from": "EventBridgeRule01",
+						"to": "MyBus01"
+					},
+					"ReceiveEvent01": {
+						"type": "connection.event-bridge.received-event",
+						"from": "EventBridgeRule01",
+						"to": "ReceiveEvent01"
+					}
+				}
+			},
+			"resources": {
+				"MyBus01": {
+					"type": "resource.external",
+					"name": "MyBus",
+					"externalResourceType": "resource.event-bridge.event-bus",
+					"identifier": "default",
+					"id": "MyBus01"
+				},
+				"SendEvent01": {
+					"type": "resource.compute.function",
+					"name": "sendEvent",
+					"entryPoint": "functions/sendEvent.handler",
+					"memory": 512,
+					"runtime": "nodejs12.x",
+					"timeout": 6,
+					"layers": [],
+					"id": "SendEvent01"
+				},
+				"ReceiveEvent01": {
+					"type": "resource.compute.function",
+					"name": "receiveEvent",
+					"entryPoint": "functions/receiveEvent.handler",
+					"memory": 512,
+					"runtime": "nodejs12.x",
+					"timeout": 6,
+					"layers": [],
+					"id": "ReceiveEvent01"
+				},
+				"EventBridgeRule01": {
+					"type": "resource.event-bridge.rule",
+					"name": "EventBridgeRule",
+					"ruleName": "eventRule",
+					"eventPattern": {
+						"source": [
+							"myTest"
+						]
+					},
+					"id": "EventBridgeRule01"
+				}
+			},
+			"metadata": {
+				"designer": {
+					"resourcePositions": {
+						"MyBus01": {
+							"x": 474,
+							"y": 90.5,
+							"z": 0
+						},
+						"SendEvent01": {
+							"x": 58,
+							"y": 103.5,
+							"z": 0
+						},
+						"ReceiveEvent01": {
+							"x": 881,
+							"y": 131.5,
+							"z": 0
+						}
+					}
+				}
+			},
+			"id": "cl1t9isoy0000d3scgw22g37w",
+			"name": "event bridge",
+			"unsafe": false
+		}
+	]
+}
