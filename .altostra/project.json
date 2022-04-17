@@ -59,7 +59,7 @@
 				"EventBridgeRule01": {
 					"type": "resource.event-bridge.rule",
 					"name": "EventBridgeRule",
-					"ruleName": "eventRule",
+					"ruleName": "my event rule1",
 					"eventPattern": {
 						"source": [
 							"myTest"
